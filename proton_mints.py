@@ -7,13 +7,18 @@ FromBlock = input("From Block: ")
 ToBlock = input("To Block: ")
 Address = input("Address: ")
 Topic = input("Topic: ")
+Topic_1 = input("Topic 1: ")
 Page = input("Page: ")
 Offset = input("Offset: ")
 ApiKey = input("ApiKey: ")
 
 def url_maker(fromBlock, toBlock, address, topic, page, offset, apiKey):
-    url_query = f"https://api.etherscan.io/api?module=logs&action=getLogs&fromBlock={fromBlock}&toBlock={toBlock}&address={address}&topic0={topic}&topic0_1_opr=and&topic1=0x0000000000000000000000000000000000000000000000000000000000000000&page={page}&offset={offset}&apikey={apiKey}"
-    return url_query
+    if Topic_1 != "":
+        url_query_1 = f"https://api.etherscan.io/api?module=logs&action=getLogs&fromBlock={fromBlock}&toBlock={toBlock}&address={address}&topic0={topic}&topic0_1_opr=and&topic1={Topic_1}&page={page}&offset={offset}&apikey={apiKey}"
+        return url_query_1
+    else:
+        url_query_2 = f"https://api.etherscan.io/api?module=logs&action=getLogs&fromBlock={fromBlock}&toBlock={toBlock}&address={address}&topic0={topic}&topic0_1_opr=and&page={page}&offset={offset}&apikey={apiKey}"
+        return url_query_2
 
 url = url_maker(FromBlock, ToBlock, Address, Topic, Page, Offset, ApiKey)
 
