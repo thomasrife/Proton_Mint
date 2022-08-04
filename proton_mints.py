@@ -3,6 +3,7 @@ import requests
 import pandas as pd
 import json
 
+Event = input("Event: ")
 FromBlock = input("From Block: ")
 ToBlock = input("To Block: ")
 Address = input("Address: ")
@@ -34,13 +35,17 @@ ourdata = []
 for x in myjson['result']:
     ourdata.append(x)
 
-out_file = open("proton_mints.json", "w") 
+json_file_name = f"{Event}_fromBlock_{FromBlock}_toBlocl_{ToBlock}.json"
+
+out_file = open(json_file_name, "w") 
     
 json.dump(ourdata, out_file, indent = 4) 
     
 out_file.close()
 
-pdObj = pd.read_json('proton_mints.json')
-pdObj.to_csv('proton_mints.csv', index=False)
+csv_file_name = f"{Event}_fromBlock_{FromBlock}_toBlocl_{ToBlock}.csv"
+
+pdObj = pd.read_json(json_file_name)
+pdObj.to_csv(csv_file_name, index=False)
 
 print('done')
