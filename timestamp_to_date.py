@@ -4,6 +4,7 @@ import pandas as pd
 
 input_csv = input('Insert relative path to file: ')
 event_name = input(("Event (Mint, Transfer, AproveForAll, SalePriceSet, UniverseSet): "))
+contract_name = input('Ingrese el nombre del contrato: ')
 mint_csv = pd.read_csv(input_csv)
 
 timestamp = []
@@ -18,7 +19,7 @@ for date in timestamp:
 col1 = 'dates_of_events'
 result = pd.DataFrame({col1:dates})
 
-file_name = f'results/dates_of_events_{event_name}.xlsx'
+file_name = f'results/dates_of_events_{event_name}_{contract_name}.xlsx'
 result.to_excel(file_name, index=False)
 print(f'Se guardó el archivo {file_name}')
 
